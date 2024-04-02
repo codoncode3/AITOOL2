@@ -5,11 +5,11 @@
 
 <div class="p-6  border border-b-4 border-t-4 ml-40 mr-40">
 
-    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/">ALL</a></button>
-    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/?tag=study">Study</a></button>
-    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/?tag=video">Video</a></button>
-    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/?tag=social media">Social media</a></button>
-    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/?tag=app">App</a></button>
+    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/supertool">ALL</a></button>
+    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/supertool/?tag=study">Study</a></button>
+    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/supertool/?tag=video">Video</a></button>
+    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/supertool/?tag=social media">Social media</a></button>
+    <button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded button border  border-black " ><a href="/supertool/?tag=app">App</a></button>
 
 </div>
 

@@ -13,11 +13,6 @@ class AccoutModel extends Model implements Authenticatable
     use AuthenticatableTrait;
     use HasFactory;
     protected $table ='users';
-    public function __construct()
-    {
-        
-    }
-
 
     public function addUser($data)
     {
@@ -29,4 +24,12 @@ class AccoutModel extends Model implements Authenticatable
         $id_tk = DB::select('SELECT id_user FROM users WHERE account_name =? AND password =?', $data);
         return $id_tk;
     }
+
+    // Define the listings method
+
+
+    public function listings() {
+        return $this->hasMany(Listing::class, 'user_id');
+    }
 }
+

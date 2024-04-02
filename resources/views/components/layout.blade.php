@@ -43,32 +43,56 @@
         <title>SuperAI Tools</title>
     </head>
     <body class="mb-48">
+        <x-card>
         <nav class="flex justify-between items-center mb-4">
-            <a href="/"
-                ><img class="w-24" src="images/logo-2.png" alt="" class="logo"
+            <a href="/supertool"
+                ><img class="w-24" src={{"images/logo-2.png"}} alt="" class="logo"
             /></a>
             <ul class="flex space-x-6 mr-6 text-lg">
+
+                @auth
+                <li>
+                    <span class="font-bold uppercase">
+                        Welcome {{auth()->user()->account_name}}
+                    </span>
+                </li>
                 <li>
                     <a href="listings/create" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i> Submit</a
                     >
                 </li>
+                <li>
+                    <a href="listings/manage" class="hover:text-laravel"
+                        ><i class="fa-solid fa-gear"></i>
+                        Manage Listing </a
+                    >
+                </li>
+                <li>
+
+                    @csrf
+
+                      <a href="/">  <i  class="fa-solid fa-door-closed"></i> Back
+                      </a>
+                    </form>
+                </li>
+                @else
 
                 <li>
-                    <a href="register.html" class="hover:text-laravel"
+                    <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i> Register</a
                     >
                 </li>
 
                 <li>
-                    <a href="login.html" class="hover:text-laravel"
+                    <a href="/login" class="hover:text-laravel"
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a
                     >
                 </li>
+                @endauth
             </ul>
         </nav>
-
+        </x-card>
 
     <main>
         {{$slot}}
@@ -77,8 +101,9 @@
 
     <footer>
 
-        <p class="text-3xl font-bold px-60 pt-20 text-green-400 mx-auto">THE BEST PAGE ABOUT AI</p>
-
+        <h1 class="text-3xl text-center font-bold my-6 uppercase text-green-400">
+            THE BEST PAGE ABOUT AI
+          </h1>
     </footer>
     <x-flash-message />
 </body>

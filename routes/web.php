@@ -38,19 +38,55 @@ Route::prefix('accounts')->name('taikhoan.')->group(function()
 
 });
 
-Route::middleware(['auth.user'])->group( function(){
+Route::middleware([])->group( function(){
     Route::get('/',[PostController::class, 'showPost'])->name('TrangChu');
     Route::get('/archive',[PostController::class,'searchPosts'])->name('searchPosts');
 
+    Route::get('/listings/create',
+        [ListingController::class,'create']);
+
+        // Store data
+    Route::post('/listings',
+        [ListingController::class,'store']);
+
+        // Show Edit Form
+    Route::get('/listings/{listing}/edit',
+        [ListingController::class, 'edit']);
+
+    //Show manage
+    Route::get('/listings/manage',
+    [ListingController::class,'manage']);
+
+    //Update Listing`
+     Route::put('/listings/{listing}',
+    [ListingController::class,'update']);
+
+        //Delete Listing
+    Route::delete('/listings/{listing}',
+    [ListingController::class,'destroy']);
+
+
+        // Singgle listing
+    Route::get('/listings/{listing}',
+    [ListingController::class,'show']);
+
+        //Show manage listing
+    Route::get('/listings/manage',
+    [ListingController::class,'manage']);
+
+    //Update Listing`
+    Route::put('/listings/{listing}',
+    [ListingController::class,'update']);
+
 });
 Route::prefix('/posts')->name('baiviet.') ->group(function()
-{       
+{
         Route::get('/id-post = {id}',[PostController::class, 'BlogDetail'])->name('ChiTietBaiViet');
 
         Route::get('/',[PostController::class,'danhSachBaiViet'])->name('dashboard');
-        
+
         Route::get('/post-detail',[PostController::class,'postDetail'])->name('DanhSachBaiViet');
-      
+
 
 
 
@@ -63,7 +99,7 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
         Route::post('/create-content/id_post = {id}/id_content = {id_content}',[PostController::class, 'postThemND'])->name('postTao_noi_dung');
 
 
-        
+
 
         Route::get('/content-detail/id_posts = {id}/id_content={id_content}',[PostController::class, 'getUpdate'])->name('gUpdate');
         Route::put('/contetn-detail/id_posts = {id}/id_content={id_content}',[PostController::class, 'postUpdate'])->name('Update');
@@ -74,11 +110,11 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
         Route::get('/delete-content',[PostController::class, 'deleteContent'])->name('xoaNoiDung');
 
 
-        
-        Route::get('/test-queue',[PostController::class, 'testQueue'])->name('testQueue');
-        
 
-        
+        Route::get('/test-queue',[PostController::class, 'testQueue'])->name('testQueue');
+
+
+
 });
 // Auth::routes();
 
@@ -91,28 +127,5 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
 Route::get('/supertool',
 [ListingController::class,'index'])->name('supertool');
 
-// show create form
-Route::get('/listings/create',
-[ListingController::class,'create']);
 
-// Store data
-Route::post('/listings',
-[ListingController::class,'store']);
-
-// Show Edit Form
-Route::get('/listings/{listing}/edit',
-[ListingController::class, 'edit']);
-
-//Update Listing`
-Route::put('/listings/{listing}',
-[ListingController::class,'update']);
-
-//Delete Listing
-Route::delete('/listings/{listing}',
-[ListingController::class,'destroy']);
-
-
-// Singgle listing
-Route::get('/listings/{listing}',
-[ListingController::class,'show']);
 

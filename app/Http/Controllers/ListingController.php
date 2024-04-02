@@ -6,9 +6,15 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class ListingController extends Controller
 {
+
+
     //Show all listings
     public function index(){
         return view('listings.index', [
@@ -51,9 +57,17 @@ class ListingController extends Controller
     }
 
 
+
+
     //Update Listing data
     public function update(Request $request,Listing $listing)
     {
+        //Make sure logged in user is owner
+        if($listing->user_id !=auth()->id()){
+            abort(403,'Unauthorized Action');
+        }
+
+
         $formFields = $request->validate([
             'name'=> ['required'],
             'tags' =>   'required',
@@ -90,10 +104,22 @@ class ListingController extends Controller
     //Delete Listing
     public function destroy(Listing $listing){
         $listing->delete();
-        return redirect('/') ->with('message','Listing deleted Successfully');
+        return redirect('/listings/manage') ->with('message','Listing deleted Successfully');
     }
+
+    //manage listings
+    public function manage() {
+        return view('listings.manage', [
+            'listings' => auth()->user()->listings()->get()
+
+        ]);
+
+
+
+
+
+
+
+    }
+
 }
-
-
-
-
