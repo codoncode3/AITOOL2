@@ -43,6 +43,9 @@ class ListingController extends Controller
              'screenshot'=>'nullable|file'
         ]);
 
+        // Thêm user_id vào mảng formFields
+        $formFields['user_id'] = auth()->id();
+
         if($request->hasFile('logo')){
             $formFields['logo'] =$request->file('logo')->store('logos','public');
         }
