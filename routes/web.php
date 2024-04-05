@@ -38,7 +38,7 @@ Route::prefix('accounts')->name('taikhoan.')->group(function()
 
 });
 
-Route::middleware([])->group( function(){
+Route::middleware(['auth.user'])->group( function(){
     Route::get('/',[PostController::class, 'showPost'])->name('TrangChu');
     Route::get('/archive',[PostController::class,'searchPosts'])->name('searchPosts');
 
@@ -70,9 +70,8 @@ Route::middleware([])->group( function(){
     Route::get('/listings/{listing}',
     [ListingController::class,'show']);
 
-        //Show manage listing
-    Route::get('/listings/manage',
-    [ListingController::class,'manage']);
+       
+
 
     //Update Listing`
     Route::put('/listings/{listing}',
