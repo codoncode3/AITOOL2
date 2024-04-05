@@ -53,7 +53,7 @@ class ListingController extends Controller
 
         Listing::create($formFields);
 
-        return redirect('/')->with('message','Listing created successfully !!');
+        return redirect('/supertool')->with('message','Listing created successfully !!');
     }
 
 

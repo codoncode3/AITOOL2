@@ -36,6 +36,8 @@ Route::prefix('accounts')->name('taikhoan.')->group(function()
     Route::get('/login', [AccountController::class, 'getDangNhap'])->name('dangnhap');
     Route::post('/login', [AccountController::class, 'checkLogin'])->name('postDN');
 
+    Route::post('/logout', [AccountController::class, 'logout']);
+
 });
 
 Route::middleware(['auth.user'])->group( function(){
@@ -70,12 +72,14 @@ Route::middleware(['auth.user'])->group( function(){
     Route::get('/listings/{listing}',
     [ListingController::class,'show']);
 
-       
+
 
 
     //Update Listing`
     Route::put('/listings/{listing}',
     [ListingController::class,'update']);
+
+    Route::post('/logout', [AccountController::class, 'logout']);
 
 });
 Route::prefix('/posts')->name('baiviet.') ->group(function()

@@ -122,7 +122,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="screenshot"
                 />
-                
+
             </div>
 
             <div class="mb-6">
@@ -149,7 +149,7 @@
                     Submit
                 </button>
 
-                <a href="/" class="text-black ml-4"> Back </a>
+                <a href="/supertool" class="text-black ml-4"> Back </a>
             </div>
 
         </form>

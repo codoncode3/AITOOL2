@@ -26,16 +26,16 @@ class AccountController extends Controller
      *
      * @return void
      */
-    
-   
-    // 
-    // 
+
+
+    //
+    //
     private $users;
     public function __construct()
     {
         $this->users = new AccoutModel();
         $this->middleware('guest')->except('logout');
-        
+
     }
     // hiển thị form đăng kí
     public function hien_thi_dk(){
@@ -46,7 +46,7 @@ class AccountController extends Controller
     // post form đăng kí
     public function post_dk(Request $request)
     {
-        
+
         $request ->validate([
             'user_name' => 'required|min:6 |unique:users,account_name',
             'pass' => 'min:6|regex:/^\S*$/',
@@ -62,7 +62,7 @@ class AccountController extends Controller
             'same' =>'Xác nhận lại mật khẩu'
         ]);
 
-        
+
 
         $data  = [
             $request->user_name,
@@ -71,9 +71,9 @@ class AccountController extends Controller
             now()
         ];
 
-        
+
         $this->users->addUser($data);
-        
+
         return redirect()->route('taikhoan.dangnhap');
 
     }
@@ -94,16 +94,16 @@ class AccountController extends Controller
             'user_name.required' =>'Tên tài khoản không rỗng',
             'user_name.min' =>'Tên tài khoản không hợp lệ',
             'pass.required' =>'Không để trống mật khẩu',
-            
+
         ]);
 
         // $data = [
         //     $request->user_name,
         //     $request->pass
         // ];
-        
+
         // $this->users->checkUser($data);
-        
+
         // if(!empty($this->users->checkUser($data)))
         // {
         //     // return Redirect::action('App\Http\Controllers\PostController@showPost');
@@ -113,7 +113,7 @@ class AccountController extends Controller
         //     return 'Thất bại';
         // }
         if(Auth::attempt(['account_name'=>$request->user_name,'password'=>$request->pass]))
-        {   
+        {
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
@@ -122,7 +122,7 @@ class AccountController extends Controller
                 return redirect()->route('TrangChu');
         }else
         {
-                return"sbdbs";
+            return redirect()->route('taikhoan.dangnhap');
         }
     }
 
