@@ -130,5 +130,4 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
 Route::get('/supertool',
 [ListingController::class,'index'])->name('supertool');
 
-
-
+// Ajax  Api CRUD
