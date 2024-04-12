@@ -13,6 +13,8 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     </head>
     <body class="sb-nav-fixed">
         {{-- Phần navbar đầu trang --}}
@@ -135,7 +137,7 @@
                         <div class="card mb-4">
                             
                             <div class="card-body">
-                                <form action="" method="post">
+                                <form id='form_create'>
                                     @csrf
                                     
                                         <div class = "border border-dark rounded-3 border-3 " >
@@ -190,7 +192,7 @@
                                                     <label for="tieu_de_noi_dung" class="form-label mt-1">Title of content: </label>
                                                     <input type="text " class='form-control' id='tieu_de_noi_dung'  name ='tieudenoidung_0'>
                                                    
-                                                    
+                                    
                                 
                                                     <label for="url_hinh_anh" class="form-label mt-1">Image path: </label>
                                                     <input type='url' class='form-control' id='url_hinh_anh'  name ='urlhinhanh_0'>

@@ -63,10 +63,7 @@ class PostController extends Controller
                     'created_at'=>now(),
                     'post_describe'=>$request->mo_ta_chi_tiet];
         $this->post->addBaiViet($data_posts);
-
-
         $id = $this->post->getIdBaiViet();
-
         $id_bai_viet = intval($id->id);
         
 
@@ -95,7 +92,7 @@ class PostController extends Controller
 
         $emailJob = new sendMailJob();
         dispatch($emailJob);
-        return redirect()->back();
+        return response()->with(['message'=>'Successfully']);
         
         // return redirect()->route('baiviet.getTao_noi_dung',['id_bai_viet'=>$id_bai_viet]  
     }

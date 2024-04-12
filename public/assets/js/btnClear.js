@@ -23,5 +23,18 @@ btnClear.addEventListener('click',function()
     btnClear.style.display ='none';
 });
 
+// $(document).ready(function(){
+//     $('#search').keyup(function(e){
+//         e.preventDefault();
+//         var keyword = $('#searchPosts').val();
+//         $.ajax({
+//             URL:'/archive',
+//             method: 'GET',
+//             data:{keyword},
+//             success: function(response){console.log(response)},
+//             error: function(xhr, status,error){console.log(error)}})
+//     });
+// });
+
 
 
