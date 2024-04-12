@@ -196,7 +196,9 @@
                             <a href="{{route('baiviet.ChiTietBaiViet',['id'=>$item->id])}}" class ='text-decoration-none text-dark'>
                                 <div class = "row d-flex justify-content-between">
                                     <div class = "col-6">
-                                        <img class= "img-fluid rounded-3" src="{{$item->image_path}}" alt="">
+                                        @foreach($item->contents as $item1)
+                                        <img class= "img-fluid rounded-3" src="{{$item1->image_path}}" alt="">
+                                        @endforeach
                                     </div>
                                     <div class ="col-6">
                                         <h5>{{$item->title}}</h5>

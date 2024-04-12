@@ -9,6 +9,8 @@ use App\Jobs\sendMailJob;
 use App\Mail\sendMail;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Content;
+use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 
@@ -64,7 +66,8 @@ class PostController extends Controller
 
 
         $id = $this->post->getIdBaiViet();
-        $id_bai_viet = intval($id[0]->id);
+
+        $id_bai_viet = intval($id->id);
         
 
 
