@@ -92,7 +92,9 @@ class PostController extends Controller
 
         $emailJob = new sendMailJob();
         dispatch($emailJob);
-        return response()->with(['message'=>'Successfully']);
+
+        
+        return response()->json(['message'=>'Successfully']);
         
         // return redirect()->route('baiviet.getTao_noi_dung',['id_bai_viet'=>$id_bai_viet]  
     }
@@ -217,6 +219,16 @@ class PostController extends Controller
         return redirect()->back();
 
     }
+
+    public function error404 ()
+    {
+        return view('error.404');
+    }
+    public function error504()
+    {
+        return view('error.504');
+    }
+    
 
    
     

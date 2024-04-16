@@ -147,6 +147,7 @@
                                                 
                                                     <label for="tieude" class="form-label mt-1">Title: </label>
                                                     <input type='text' class='form-control' id='tieude'  name ='tieu_de' value='{{old('tieu_de')}}' >
+                                                    <span id = 'error_tieu_de' style ="color:red "></span>
                                                     @error('tieu_de')
                                                         <span style ="color:red ">{{$message}}</span>
                                                         <br>
@@ -154,6 +155,7 @@
                                 
                                                     <label for="mo_ta_chung" class="form-label mt-1">Plus: </label>
                                                     <input type="text" class='form-control' id='mo_ta_chung'  name ='mo_ta_chung' value='{{old('mo_ta_chung')}}'>
+                                                    <span id = 'error_mo_ta_chung' style ="color:red "></span>
                                                     @error('mo_ta_chung')
                                                     <span style ="color:red ">{{$message}}</span>
                                                     <br>
@@ -161,6 +163,8 @@
                                 
                                                     <label for="tac_gia" class="form-label mt-1">Author:  </label>
                                                     <input type="text" class='form-control' id='tac_gia'  name ='tac_gia'value='{{old('tac_gia')}}'>
+                                                    <span id = 'error_tac_gia' style ="color:red "></span>
+                                                    
                                                     @error('tac_gia')
                                                     <span style ="color:red ">{{$message}}</span>
                                                     <br>
@@ -169,6 +173,7 @@
                                                     <label for="mo_ta_chi_tiet" class="form-label mt-1">Describe: </label>
                                                     <br>
                                                     <textarea class ='form-control' name="mo_ta_chi_tiet" id="mo_ta_chi_tiet" cols="160" rows="5" style="width: 100%;" ></textarea>
+                                                    <span id = 'error_mo_ta_chi_tiet' style ="color:red "></span>
                                                     @error('mo_ta_chi_tiet')
                                                     <span style ="color:red ">{{$message}}</span>
                                                     <br>

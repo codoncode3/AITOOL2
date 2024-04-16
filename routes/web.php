@@ -80,6 +80,12 @@ Route::prefix('/posts')->name('baiviet.') ->group(function()
 
         
 });
+
+Route::prefix('/error')->group(function()
+{
+    Route::get('/404',[PostController::class, 'error404']);
+    Route::get('/504',[PostController::class,'error504']);
+});
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

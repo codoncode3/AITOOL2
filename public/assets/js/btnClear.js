@@ -23,16 +23,19 @@ btnClear.addEventListener('click',function()
     btnClear.style.display ='none';
 });
 
+
 // $(document).ready(function(){
-//     $('#search').keyup(function(e){
+    
+//     $('#search').on("input",function(e){
+        
 //         e.preventDefault();
 //         var keyword = $('#searchPosts').val();
 //         $.ajax({
-//             URL:'/archive',
+//             url:'/archive',
 //             method: 'GET',
-//             data:{keyword},
+//             data: {keyword: keyword},
 //             success: function(response){console.log(response)},
-//             error: function(xhr, status,error){console.log(error)}})
+//             error: function(xhr, status,error){console.log(status)}})
 //     });
 // });
 

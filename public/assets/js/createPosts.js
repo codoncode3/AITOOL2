@@ -60,23 +60,64 @@ $(document).ready(function()
         $('#form_create').submit(function(e) {
                 e.preventDefault();
                 var data = $(this).serializeArray();
-                console.log(data);
+                // data = JSON.stringify(data);
+                
                 $.ajax({
-                        URL:'/create-posts',
+                        url:'/posts/create-posts',
                         method: 'POST',
-                        data:data,
-                        success: function()
-                        {console.log('Successfully')},
+                        data: data,
+                        success: function(response)
+                        {
+                                console.log('Successfully');
+                                console.log(response);
+                        },
                         error:function(xhr, status, error)
                         {
-                                console.log(error);
-                                console.log(status);
-                                
+                                console.log(xhr.status);
+                                if(xhr.status === 404) {
+                                        window.location.href='http://127.0.0.1:8000/error/404';
+                                }
+                                else if(xhr.status === 422)
+                                {
+                                        if($('#tieude').val().trim() === '')
+                                        {
+                                                $('#error_tieu_de').html('Tiêu đề không được để trống <br>');
+                                        }
+
+                                        if($('#mo_ta_chung').val().trim() === '')
+                                        {
+                                                $('#error_mo_ta_chung').html('Mô tả chung không được để trống<br>');
+
+                                        }
+                                        if($('#tac_gia').val().trim() === '')
+                                        {
+                                                $('#error_tac_gia').html('Tác giả không được để trống <br>');
+                                        }
+                                        if($('#mo_ta_chi_tiet').val().trim() === '')
+                                        {
+                                                $('#error_mo_ta_chi_tiet').html('Mô tả chi tiết không được để trống <br>');
+                                        }
+
+                                }
+                                else if(xhr.status === 503)
+                                {
+                                        alert('Máy chủ quá tải. Vui lòng đợi trong ít phút');
+                                        setTimeout(() => {
+                                                window.location.reload();
+                                        },30000);
+                                }else if(xhr.status === 401)
+                                {
+                                        window.location.href= 'http://127.0.0.1:8000/login';
+                                }
+                                else if(xhr.status ===504)
+                                {
+                                        window.location.href='http://127.0.0.1:8000/error/504';
+                                }
                         }
 
 
                 })
-        })
+        });
 }
 
 )
