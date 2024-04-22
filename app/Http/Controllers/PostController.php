@@ -13,6 +13,7 @@ use App\Models\Content;
 use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {   
@@ -49,13 +50,29 @@ class PostController extends Controller
 
     public function postThem_bai_viet(Request $request)
     {
-        $request->validate(['tieu_de' =>'required',
-                            'tac_gia'=>'required',
-                            'mo_ta_chi_tiet' =>'required'],
+        // $request->validate(['tieu_de' =>'required',
+        //                     'tac_gia'=>'required',
+        //                     'mo_ta_chung'=>'required',
+        //                     'mo_ta_chi_tiet' =>'required'],
 
-                            ['required' =>'Không được để trống'
-                            ]);
+        //                     ['required' =>'Không được để trống'
+        //                     ]);
+        $errors  = [];
+        $rules = ['tieu_de' =>'required',
+                    'tac_gia'=>'required',
+                    'mo_ta_chung'=>'required',
+                    'mo_ta_chi_tiet'=>'required'];
+        $messages = ['required' =>'Không được để trống '];
 
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator -> fails())
+        {
+            $errors = $validator->errors()->toArray();
+            return response()->json(['errors'=>$errors], 422);
+        }
+
+        
         $data_posts = [
                     'title'=>$request->tieu_de,
                     'plus'=>$request->mo_ta_chung,
@@ -66,13 +83,26 @@ class PostController extends Controller
         $id = $this->post->getIdBaiViet();
         $id_bai_viet = intval($id->id);
         
-
-
-
-        for( $i = 0; $i <10;$i++)
+        for( $i = 0; $i <10; $i++)
         { 
-            if($request->input("linhvuc_$i") !== null)
+            if($request->input("linhvuc_$i") !== null ||$request->input("tieudenoidung_$i") !== null || $request->input("urlhinhanh_$i") !== null || $request->input("nguonhinhanh_$i") !== nulL || $request->input("noi_dung_$i") !== null)
             {
+                
+                $rules_1 = ["linhvuc_$i"=>'required',
+                                "tieudenoidung_$i"=>'required',
+                                "urlhinhanh_$i"=>'required',
+                                "nguonhinhanh_$i"=>'required',
+                                "noi_dung_$i"=>'required'];
+                
+                $messages_1 = ['required'=>"Không được để trống"];
+
+                $validator_1 = Validator::make($request->all(), $rules_1, $messages_1);
+                if ($validator_1->fails())
+                {
+                    $errors = array_merge($errors, $validator_1->errors()->toArray());
+                    return response()->json(['errors'=>$errors], 422);
+                }
+
                 $data = [ 
                 'id_posts'=>$id_bai_viet,
                 'license'=>$request->input("linhvuc_$i"),
@@ -87,6 +117,7 @@ class PostController extends Controller
             {
                 break;
             }
+
             
         }
 
@@ -94,7 +125,8 @@ class PostController extends Controller
         dispatch($emailJob);
 
         
-        return response()->json(['message'=>'Successfully']);
+        
+        return response()->json(['message'=>'Successfully'],200);
         
         // return redirect()->route('baiviet.getTao_noi_dung',['id_bai_viet'=>$id_bai_viet]  
     }

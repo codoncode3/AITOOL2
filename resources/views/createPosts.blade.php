@@ -14,6 +14,7 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     </head>
     <body class="sb-nav-fixed">
@@ -192,26 +193,31 @@
                                             
                                                     <label for="linhvuc" class="form-label mt-1">License:  </label>
                                                     <input type="text " class='form-control' id='linhvuc'  name ='linhvuc_0'>
+                                                    <span id = 'error_linhvuc_0' style ="color:red "></span>
                                                     
                                 
                                                     <label for="tieu_de_noi_dung" class="form-label mt-1">Title of content: </label>
                                                     <input type="text " class='form-control' id='tieu_de_noi_dung'  name ='tieudenoidung_0'>
+                                                    <span id = 'error_tieudenoidung_0' style ="color:red "></span>
                                                    
                                     
                                 
                                                     <label for="url_hinh_anh" class="form-label mt-1">Image path: </label>
                                                     <input type='url' class='form-control' id='url_hinh_anh'  name ='urlhinhanh_0'>
+                                                    <span id = 'error_urlhinhanh_0' style ="color:red "></span>
                                                     
                                 
                                 
                                                     <label for="nguon_hinh_anh" class="form-label mt-1">Image source:  </label>
                                                     <input type="text " class='form-control' id='nguon_hinh_anh'  name ='nguonhinhanh_0'>
+                                                    <span id = 'error_nguonhinhanh_0' style ="color:red "></span>
                                                     
                                 
                                 
                                                     <label for="noi_dung" class="form-label mt-1">Content: </label>
                                                     <br>
                                                     <textarea class ='form-control' name="noi_dung_0" id="noidung" cols="160" rows="10" style="width: 100%;"></textarea>
+                                                    <span id = 'error_noi_dung_0' style ="color:red "></span>
                                                     
                                                     
                                                     

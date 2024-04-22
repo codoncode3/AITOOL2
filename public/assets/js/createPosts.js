@@ -31,19 +31,24 @@ addContent.innerHTML=` <div class = "border border-dark rounded-3 border-3 my-5 
    
         <label for="linhvuc" class="form-label mt-1">License:  </label>
         <input type="text " class='form-control' id='linhvuc_${counter}'  name ='linhvuc_${counter}'>
+        <span id = 'error_linhvuc_${counter}' style ="color:red "></span>
        
         <label for="tieu_de_noi_dung" class="form-label mt-1">Title of content: </label>
         <input type="text " class='form-control' id='tieu_de_noi_dung_${counter}'  name ='tieudenoidung_${counter}'>
+        <span id = 'error_tieudenoidung_${counter}' style ="color:red "></span>
         
         <label for="url_hinh_anh" class="form-label mt-1">Image path: </label>
         <input type='url' class='form-control' id='url_hinh_anh_${counter}'  name ='urlhinhanh_${counter}'>
+        <span id = 'error_urlhinhanh_${counter}' style ="color:red "></span>
        
         <label for="nguon_hinh_anh" class="form-label mt-1">Image source:  </label>
         <input type="text " class='form-control' id='nguon_hinh_anh_${counter}'  name ='nguonhinhanh_${counter}'>
+        <span id = 'error_nguonhinhanh_${counter}' style ="color:red "></span>
 
         <label for="noi_dung" class="form-label mt-1">Content: </label>
         <br>
-        <textarea class ='form-control' name="noi_dung_${counter}" id="noidung_${counter}" cols="160" rows="10" style="width: 100%;"></textarea>   
+        <textarea class ='form-control' name="noi_dung_${counter}" id="noidung_${counter}" cols="160" rows="10" style="width: 100%;"></textarea> 
+        <span id = 'error_noi_dung_${counter}' style ="color:red "></span>  
 </div>`;
 
 content.appendChild(addContent);
@@ -68,8 +73,13 @@ $(document).ready(function()
                         data: data,
                         success: function(response)
                         {
-                                console.log('Successfully');
-                                console.log(response);
+                                Swal.fire({
+                                        title: "Successfully !!!",
+                                        text: " Post added successfully ",
+                                        icon: "success",
+                                        timer: 2000 ,
+                                        showConfirmButton:false
+                                        });
                         },
                         error:function(xhr, status, error)
                         {
@@ -79,24 +89,13 @@ $(document).ready(function()
                                 }
                                 else if(xhr.status === 422)
                                 {
-                                        if($('#tieude').val().trim() === '')
-                                        {
-                                                $('#error_tieu_de').html('Tiêu đề không được để trống <br>');
-                                        }
-
-                                        if($('#mo_ta_chung').val().trim() === '')
-                                        {
-                                                $('#error_mo_ta_chung').html('Mô tả chung không được để trống<br>');
-
-                                        }
-                                        if($('#tac_gia').val().trim() === '')
-                                        {
-                                                $('#error_tac_gia').html('Tác giả không được để trống <br>');
-                                        }
-                                        if($('#mo_ta_chi_tiet').val().trim() === '')
-                                        {
-                                                $('#error_mo_ta_chi_tiet').html('Mô tả chi tiết không được để trống <br>');
-                                        }
+                                        var errors = xhr.responseJSON.errors;
+                                        
+                                        console.log(xhr.responseJSON.errors);
+                                        $.each(errors, function(key, value) {
+                                        
+                                        $('#error_'+ key ).html(value[0] + '<br>');
+                                        });
 
                                 }
                                 else if(xhr.status === 503)
